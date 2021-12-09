@@ -2,20 +2,17 @@ package com.unipi.reactor.flux;
 
 import com.unipi.reactor.util.Util;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.FluxSink;
-
-import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 /*
-* Create and Push are about the same:
+* Push and Create are about the same:
 *
 * Create is thread-safe, we can use it with multiple threads.
 * Push is NOT thread-safe, we can use it in a single thread producer.
 *
 */
 
-public class Lec12FluxCreateRefactoring {
+public class Lec18FluxPush {
 
     public static void main(String[] args) {
 
@@ -23,7 +20,7 @@ public class Lec12FluxCreateRefactoring {
         NameProducer nameProducer = new NameProducer();
 
         // Publisher
-        Flux.create(nameProducer)
+        Flux.push(nameProducer)
                 // Subscriber
                 .subscribe(Util.subscriber());
 
@@ -42,22 +39,5 @@ public class Lec12FluxCreateRefactoring {
 
         // Intended delay
         Util.sleepSeconds(2);
-    }
-}
-
-class NameProducer implements Consumer<FluxSink<String>> {
-
-    private FluxSink<String> fluxSink;
-
-    @Override
-    public void accept(FluxSink<String> stringFluxSink) {
-        this.fluxSink = stringFluxSink;
-    }
-
-    public void produce() {
-        String name = Util.faker().name().fullName();
-        // Thread information (optional)
-        String thread = Thread.currentThread().getName();
-        this.fluxSink.next(thread + " : " + name);
     }
 }

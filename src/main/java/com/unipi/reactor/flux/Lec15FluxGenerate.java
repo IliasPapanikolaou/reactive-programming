@@ -33,6 +33,7 @@ public class Lec15FluxGenerate {
                 .take(3) // Get only 3 items
                 .subscribe(Util.subscriber());
 
+
         // Complete() stops the loop (onComplete)
         Flux.generate(synchronousSink -> {
                     // With SynchronousSink you are allowed to emit only one item
@@ -42,6 +43,7 @@ public class Lec15FluxGenerate {
                 })
                 .take(3) // This doesn't matter because complete() was used
                 .subscribe(Util.subscriber());
+
 
         // Error() (onError)
         Flux.generate(synchronousSink -> {
