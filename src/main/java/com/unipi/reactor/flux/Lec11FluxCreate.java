@@ -2,7 +2,9 @@ package com.unipi.reactor.flux;
 
 import com.unipi.reactor.util.Util;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.FluxSink;
 
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 
 public class Lec11FluxCreate {

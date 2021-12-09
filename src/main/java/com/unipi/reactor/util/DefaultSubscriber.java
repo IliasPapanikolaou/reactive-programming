@@ -8,11 +8,10 @@ public class DefaultSubscriber implements Subscriber<Object> {
     private String name = "";
 
     public DefaultSubscriber() {
-        this.name = Util.faker().name().firstName();
     }
 
     public DefaultSubscriber(String name) {
-        this.name = name;
+        this.name = name + " ";
     }
 
     @Override
@@ -22,16 +21,16 @@ public class DefaultSubscriber implements Subscriber<Object> {
 
     @Override
     public void onNext(Object o) {
-        System.out.println(name + " Received: " + o);
+        System.out.println(name + "Received: " + o);
     }
 
     @Override
     public void onError(Throwable throwable) {
-        System.out.println(name + " Error: " + throwable.getMessage());
+        System.out.println(name + "Error: " + throwable.getMessage());
     }
 
     @Override
     public void onComplete() {
-        System.out.println(name + " Completed");
+        System.out.println(name + "Completed");
     }
 }
