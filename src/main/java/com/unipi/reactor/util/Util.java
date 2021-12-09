@@ -1,6 +1,7 @@
 package com.unipi.reactor.util;
 
 import com.github.javafaker.Faker;
+import org.reactivestreams.Subscriber;
 
 import java.time.Duration;
 import java.util.function.Consumer;
@@ -14,7 +15,7 @@ public class Util {
     }
 
     public static Consumer<Throwable> onError() {
-        return err -> System.out.println("Received: " + err.getMessage());
+        return err -> System.out.println("Error Received: " + err.getMessage());
     }
 
     public static Runnable onComplete() {
@@ -31,5 +32,13 @@ public class Util {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Subscriber<Object> subscriber() {
+        return new DefaultSubscriber();
+    }
+
+    public static Subscriber<Object> subscriber(String name) {
+        return new DefaultSubscriber(name);
     }
 }
