@@ -4,11 +4,12 @@ import com.github.javafaker.Faker;
 import org.reactivestreams.Subscriber;
 
 import java.time.Duration;
+import java.util.Locale;
 import java.util.function.Consumer;
 
 public class Util {
 
-    private static final Faker FAKER = Faker.instance();
+    private static final Faker FAKER = Faker.instance(Locale.ENGLISH);
 
     public static Consumer<Object> onNext() {
         return obj -> System.out.println("Received: " + obj);
