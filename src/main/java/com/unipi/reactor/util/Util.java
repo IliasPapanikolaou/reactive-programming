@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 public class Util {
 
-    private static final Faker FAKER = Faker.instance(Locale.ENGLISH);
+    private static final Faker FAKER = new Faker(new Locale("en"));
 
     public static Consumer<Object> onNext() {
         return obj -> System.out.println("Received: " + obj);
